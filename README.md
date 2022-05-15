@@ -1,11 +1,42 @@
-### Hi there 👋 it's Ahmed Kamal
+# Nuxt 3 Minimal Starter
 
-[![Ahmed Kamal's Github Stats][GITHUB_STATS]][GITHUB_STATS]
+Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
 
-[![Ahmed Kamal's Top Langs][TOP_LANGS]][TOP_LANGS]
+## Setup
 
-[![Ahmed Kamal's Profile Views][PROFILE_VIEWS]][PROFILE_VIEWS]
+Make sure to install the dependencies:
 
-[GITHUB_STATS]: https://github-readme-stats.vercel.app/api?username=akaahmedkamal&show_icons=true&theme=default&include_all_commits=true
-[TOP_LANGS]: https://github-readme-stats.vercel.app/api/top-langs/?username=akaahmedkamal&langs_count=8&hide=HTML,CSS,Vue&layout=compact
-[PROFILE_VIEWS]: https://komarev.com/ghpvc/?username=akaahmedkamal
+```bash
+# yarn
+yarn install
+
+# npm
+npm install
+
+# pnpm
+pnpm install --shamefully-hoist
+```
+
+## Development Server
+
+Start the development server on http://localhost:3000
+
+```bash
+npm run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+npm run build
+```
+
+Locally preview production build:
+
+```bash
+npm run preview
+```
+
+Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment) for more information.
