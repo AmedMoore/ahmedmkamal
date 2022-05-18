@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "api"
+		},
+		{
+			"path": "web"
+		}
+	],
+	"settings": {
+		"nuxt.isNuxtApp": false,
+		"files.exclude": {
+			"**/node_modules": true
+		}
+	}
+}
