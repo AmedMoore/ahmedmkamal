@@ -1,7 +1,8 @@
 import { nanoid } from "nanoid";
 import { faker } from "@faker-js/faker";
 import { format, isValid } from "date-fns";
-import { Optional } from "~/models/optional";
+import { Optional } from "../optional";
+import { Tag } from "./tag";
 
 export class Post {
   private constructor(
@@ -11,16 +12,20 @@ export class Post {
     public readonly preview: string,
     public readonly content: string,
     public readonly publishDate: string,
+    public readonly author: string,
+    public readonly tags: Tag[],
   ) {}
 
   public static fake(slug: string = faker.lorem.slug()): Post {
     return Post.from({
       id: nanoid(),
       title: faker.hacker.phrase(),
+      slug,
       preview: faker.lorem.paragraphs(1),
       content: faker.lorem.paragraphs(5),
       publishDate: faker.date.past(),
-      slug,
+      author: faker.internet.userName(),
+      tags: [Tag.fake(), Tag.fake(), Tag.fake()],
     }).value;
   }
 
@@ -33,6 +38,8 @@ export class Post {
     if (typeof obj["slug"] !== "string") return post;
     if (typeof obj["preview"] !== "string") return post;
     if (typeof obj["content"] !== "string") return post;
+    if (typeof obj["author"] !== "string") return post;
+    if (!Array.isArray(obj["tags"])) return post;
 
     const publishDate = Optional.empty<string>();
     if (
@@ -46,6 +53,8 @@ export class Post {
     publishDate.value = Post.formatDate(new Date(obj["publishDate"])).value;
     if (!publishDate.hasValue) return post;
 
+    const tags = obj["tags"].map(Tag.from).filter(x => x.hasValue).map(x => x.value);
+
     post.value = new Post(
       /* id */ obj["id"],
       /* title */ obj["title"],
@@ -53,6 +62,8 @@ export class Post {
       /* preview */ obj["preview"],
       /* content */ obj["content"],
       /* publishDate */ publishDate.value,
+      /* author */ obj["author"],
+      /* tags */ tags,
     );
 
     return post;

@@ -1,7 +1,7 @@
-const express = require("express");
-const { body } = require("express-validator");
-const { getUser, getUsers, createUser } = require("../repos/users");
-const { validateRequest } = require("../utils/validate-request");
+import express from "express";
+import { body } from "express-validator";
+import { getUser, getUsers, createUser } from "../repos/users";
+import { validateRequest } from "../utils/validate-request";
 
 /**
  * @swagger
@@ -57,7 +57,7 @@ const router = express.Router();
  *               - id: Anh8AdwnnjnqIqdySQeUU
  *                 username: Sherif Zaher
  */
-router.get("/", (req, res) => {
+router.get("/", (_req, res) => {
   getUsers().then(res.send.bind(res));
 });
 
@@ -100,7 +100,7 @@ router.get("/:id", async (req, res) => {
     const user = await getUser(req.params.id);
     res.send(user);
   } catch (e) {
-    res.status(404).send(e.message);
+    res.status(404).send(e instanceof Error ? e.message : "Not Found!");
   }
 });
 
@@ -152,4 +152,4 @@ router.post(
   }
 );
 
-module.exports = router;
+export default router;

@@ -1,7 +1,7 @@
-const { nanoid } = require("nanoid");
-const db = require("../db");
+import { nanoid } from "nanoid";
+import db from "../db";
 
-async function getUser(id) {
+export async function getUser(id: string) {
   const users = await getUsers();
   const user = users.find((x) => x.id === id);
   if (!user) {
@@ -10,16 +10,14 @@ async function getUser(id) {
   return user;
 }
 
-async function getUsers() {
+export async function getUsers() {
   const users = db.getData("/users");
   return Array.isArray(users) ? users : [];
 }
 
-async function createUser(user) {
+export async function createUser(user: Record<string, unknown>) {
   const users = await getUsers();
   const newUser = { ...user, id: nanoid() };
   db.push("/users", [...users, newUser]);
   return newUser;
 }
-
-module.exports = { getUser, getUsers, createUser };

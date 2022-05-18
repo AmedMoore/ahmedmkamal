@@ -1,20 +1,21 @@
-const { nanoid } = require("nanoid");
-const db = require("../db");
-const { getUser } = require("./users");
-const { getTag } = require("./tags");
+import { nanoid } from "nanoid";
+import { Post } from "@ahmedmkamal/models";
+import db from "../db";
+import { getUser } from "./users";
+import { getTag } from "./tags";
 
-async function validatePostRefs(post) {
+async function validatePostRefs(post: Post) {
   await getUser(post.author);
-  await Promise.all(post.tags.map(getTag));
+  await Promise.all(post.tags.map((x) => getTag(x.id)));
 }
 
-async function resolvePostRefs(post) {
+async function resolvePostRefs(post: Post) {
   const author = await getUser(post.author);
-  const tags = await Promise.all(post.tags.map(getTag));
+  const tags = await Promise.all(post.tags.map((x) => getTag(x.id)));
   return { ...post, author, tags };
 }
 
-async function getPost(id) {
+export async function getPost(id: string) {
   const posts = await getPosts();
   const post = posts.find((x) => x.id === id);
   if (!post) {
@@ -23,7 +24,7 @@ async function getPost(id) {
   return await resolvePostRefs(post);
 }
 
-async function getPosts(resolveRefs = true) {
+export async function getPosts(resolveRefs = true) {
   const posts = db.getData("/posts");
   return Array.isArray(posts)
     ? resolveRefs
@@ -32,12 +33,10 @@ async function getPosts(resolveRefs = true) {
     : [];
 }
 
-async function createPost(post) {
+export async function createPost(post: Post) {
   await validatePostRefs(post);
   const posts = await getPosts(/* resolveRefs */ false);
   const newPost = { ...post, publishDate: new Date(), id: nanoid() };
   db.push("/posts", [...posts, newPost]);
-  return await resolvePostRefs(newPost);
+  return await resolvePostRefs(Post.from(newPost).value);
 }
-
-module.exports = { getPost, getPosts, createPost };

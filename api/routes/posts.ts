@@ -1,7 +1,7 @@
-const express = require("express");
-const { body } = require("express-validator");
-const { getPost, getPosts, createPost } = require("../repos/posts");
-const { validateRequest } = require("../utils/validate-request");
+import express from "express";
+import { body } from "express-validator";
+import { getPost, getPosts, createPost } from "../repos/posts";
+import { validateRequest } from "../utils/validate-request";
 
 /**
  * @swagger
@@ -114,7 +114,7 @@ const router = express.Router();
  *                   - id: 1WoDPwRLOXa3QsfBjASKP
  *                     name: Magazine
  */
-router.get("/", (req, res) => {
+router.get("/", (_req, res) => {
   getPosts().then(res.send.bind(res));
 });
 
@@ -163,7 +163,7 @@ router.get("/:id", async (req, res) => {
     const post = await getPost(req.params.id);
     res.send(post);
   } catch (e) {
-    res.status(404).send(e.message);
+    res.status(404).send(e instanceof Error ? e.message : "Not Found!");
   }
 });
 
@@ -232,9 +232,9 @@ router.post(
       const post = await createPost(req.body);
       res.send(post);
     } catch (e) {
-      res.status(404).send(e.message);
+      res.status(404).send(e instanceof Error ? e.message : "Not Found!");
     }
   }
 );
 
-module.exports = router;
+export default router;

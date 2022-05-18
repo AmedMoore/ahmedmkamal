@@ -1,14 +1,14 @@
-#!/usr/bin/env node
+import dotenv from "dotenv";
 
-require("dotenv").config();
+dotenv.config();
 
 /**
  * Module dependencies.
  */
 
-const app = require("../app");
-const debug = require("debug")("blog-backend:server");
-const http = require("http");
+import debug from "debug";
+import http from "http";
+import app from "./app";
 
 /**
  * Get port from environment and store in Express.
@@ -35,7 +35,7 @@ server.on("listening", onListening);
  * Normalize a port into a number, string, or false.
  */
 
-function normalizePort(val) {
+function normalizePort(val: string) {
   const port = parseInt(val, 10);
 
   if (isNaN(port)) {
@@ -51,11 +51,16 @@ function normalizePort(val) {
   return false;
 }
 
+interface ErrorListener extends Error {
+    readonly syscall: string;
+    readonly code: string;
+}
+
 /**
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error) {
+function onError(error: ErrorListener) {
   if (error.syscall !== "listen") {
     throw error;
   }
@@ -83,6 +88,6 @@ function onError(error) {
 
 function onListening() {
   const addr = server.address();
-  const bind = typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
+  const bind = typeof addr === "string" ? `pipe ${addr}` : `port ${addr?.port}`;
   debug(`Listening on ${bind}`);
 }

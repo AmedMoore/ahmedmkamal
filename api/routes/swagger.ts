@@ -1,7 +1,7 @@
-const path = require("path");
-const express = require("express");
-const swagger = require("swagger-ui-express");
-const swaggerJsdoc = require("swagger-jsdoc");
+import path from "path";
+import express from "express";
+import swagger from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
 
 const router = express.Router();
 
@@ -22,4 +22,4 @@ router.get(
   )
 );
 
-module.exports = router;
+export default router;

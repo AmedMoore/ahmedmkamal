@@ -18,7 +18,10 @@ export class Optional<T> {
   }
 
   public get value(): T {
-    return this._value;
+    if (!this.hasValue) {
+      throw new Error("trying to access value on an empty optional");
+    }
+    return this._value!;
   }
 
   public set value(value: T) {

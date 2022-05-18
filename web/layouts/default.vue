@@ -9,8 +9,6 @@
 </template>
 
 <script setup>
-import { useHead } from "nuxt/app";
-
 useHead({
   title: "Ahmed Kamal",
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",

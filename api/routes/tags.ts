@@ -1,7 +1,7 @@
-const express = require("express");
-const { body } = require("express-validator");
-const { getTag, getTags, createTag, deleteTags } = require("../repos/tags");
-const { validateRequest } = require("../utils/validate-request");
+import express from "express";
+import { body } from "express-validator";
+import { getTag, getTags, createTag, deleteTags } from "../repos/tags";
+import { validateRequest } from "../utils/validate-request";
 
 /**
  * @swagger
@@ -57,7 +57,7 @@ const router = express.Router();
  *               - id: 4_dKnMMELfszCN_ezlros
  *                 name: Entertainment
  */
-router.get("/", (req, res) => {
+router.get("/", (_req, res) => {
   getTags().then(res.send.bind(res));
 });
 
@@ -100,7 +100,7 @@ router.get("/:id", async (req, res) => {
     const tag = await getTag(req.params.id);
     res.send(tag);
   } catch (e) {
-    res.status(404).send(e.message);
+    res.status(404).send(e instanceof Error ? e.message : "Not Found!");
   }
 });
 
@@ -191,8 +191,8 @@ router.delete("/:id", async (req, res) => {
     const tag = await deleteTags(req.params.id);
     res.send(tag);
   } catch (e) {
-    res.status(404).send(e.message);
+    res.status(404).send(e instanceof Error ? e.message : "Not Found!");
   }
 });
 
-module.exports = router;
+export default router;

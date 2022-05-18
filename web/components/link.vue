@@ -15,7 +15,7 @@ const props = defineProps<{ href: string; external?: true }>();
 const target = computed(() => (props.external ? "_blank" : "_self"));
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .link {
   @apply text-blue-500;
 }

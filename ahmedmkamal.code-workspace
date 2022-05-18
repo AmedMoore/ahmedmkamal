@@ -5,12 +5,22 @@
 		},
 		{
 			"path": "web"
+		},
+		{
+			"path": "models"
 		}
 	],
 	"settings": {
 		"nuxt.isNuxtApp": false,
 		"files.exclude": {
 			"**/node_modules": true
-		}
+		},
+		"scss.lint.unknownAtRules": "ignore",
+		"cSpell.words": [
+			"ahmedmkamal",
+			"Kamal",
+			"Nuxt",
+			"upwork"
+		]
 	}
 }

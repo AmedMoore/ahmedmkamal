@@ -18,7 +18,7 @@ import { useFetch } from "#app";
 import { computed } from "#imports";
 import { useRoute } from "vue-router";
 import VueFeather from "vue-feather";
-import type { Post } from "~/models/post";
+import type { Post } from "@ahmedmkamal/models";
 
 const route = useRoute();
 
@@ -27,7 +27,7 @@ const { data } = await useFetch<Post>(`/api/blog/${route.params.slug}`);
 const post = computed<Post>(() => data.value);
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .article__page {
   @apply flex justify-center;
 }

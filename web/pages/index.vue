@@ -28,7 +28,7 @@
 import { useFetch } from "#app";
 import { computed } from "#imports";
 import PostCard from "~/components/post-card.vue";
-import type { Post } from "~/models/post";
+import type { Post } from "@ahmedmkamal/models";
 
 const socialLinks = {
   github: "https://github.com/ahmedmkamal",
