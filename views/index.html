@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Kamal</title>
+    <style>
+        .flex {
+            display: flex;
+        }
+        .flex-col {
+            flex-direction: column;
+        }
+        .items-center {
+            align-items: center;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .my-12 {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .text-xl {
+            font-size: 1.5rem;
+        }
+        .text-2xl {
+            font-size: 2.25rem;
+        }
+        .text-3xl {
+            font-size: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex flex-col">
+        <section class="text-center my-12">
+            <h1 class="text-3xl">Hey! I'm Ahmed Kamal,</h1>
+            <h2 class="text-xl">Egypt based Software Developer building cool stuff for Mobile and Web.</h2>
+            <div>
+                <span>Find me on </span>
+                <a href="//github.com/ahmedmkamal" target="_blank">Github</a>
+                <span>, </span>
+                <a href="//twitter.com/akaahmedkamal" target="_blank">Twitter</a>
+                <span>, and </span>
+                <a href="//upwork.com/freelancers/~01f21e9baaabb64d1d" target="_blank">Upwork</a>
+                <span>.</span>
+            </div>
+        </section>
+        <section class="my-12">
+            <h1 class="text-2xl text-center">Latest from my blog</h1>
+            <div id="latest_posts" class="flex flex-col items-center">
+                <template id="post_card">
+                    
+                </template>
+            </div>
+        </section>
+    </div>
+
+    <script type="{{ .JsScript }}">
+        const posts = [
+            {{range .Posts}}
+            {{end}}
+        ];
+    </script>
+</body>
+</html>
