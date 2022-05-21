@@ -56,6 +56,7 @@ app.on("init", function init() {
 })
 
 window.onload = function onload() {
-    app.set("theme", localStorage.getItem("theme") ?? "light")
     app.emit("init")
 }
+
+app.set("theme", localStorage.getItem("theme") ?? "light")

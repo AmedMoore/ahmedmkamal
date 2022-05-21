@@ -140,7 +140,7 @@ html.dark .header .dark-mode-toggle svg.light {
 }
 
 .link[target="_blank"]::after {
-    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" height="10" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="10"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>');
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" height="10" stroke="gray" stroke-width="2" viewBox="0 0 24 24" width="10"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>');
 }
 
 .humanized-list {

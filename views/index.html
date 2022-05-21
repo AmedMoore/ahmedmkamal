@@ -2,11 +2,14 @@
 <html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="{{.Meta.Keywords}}" name="keywords"/>
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport"/>
+    <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
     <title>{{.Meta.Title}}</title>
+    <meta content="{{.Meta.Keywords}}" name="keywords"/>
     <link href="/assets/styles/main.css?v={{.Meta.Version}}" rel="stylesheet"/>
+    <script src="/assets/scripts/main.js?v={{.Meta.Version}}"
+            type="application/javascript"></script>
 </head>
 <body>
     <header class="header">
@@ -117,8 +120,5 @@
             </div>
         </section>
     </main>
-
-    <script src="/assets/scripts/main.js?v={{.Meta.Version}}"
-            type="application/javascript"></script>
 </body>
 </html>

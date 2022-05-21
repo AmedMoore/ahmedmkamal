@@ -1,16 +1,28 @@
-BIN := bin/ahmedmkamal.gexe
+TARGET    := ahmedmkamal.gexe
+VERSION   := v0.1.0
+
+SRC_DIR   := .
+BUILD_DIR := bin
+EXE       := $(BUILD_DIR)/$(TARGET)
+
+all: clean build
 
 .PHONY: build
 
-build: clean
-	go build -o $(BIN)
+build:
+	go build -o $(EXE) $(SRC_DIR)
+
+.PHONY: build/debug
+
+build/debug:
+	go build -tags debug -o $(EXE) $(SRC_DIR)
 
 .PHONY: clean
 
 clean:
-	rm -f $(BIN)
+	$(RM) -rf $(BUILD_DIR)
 
 .PHONY: build/run
 
 build/run: build
-	$(BIN)
+	$(EXE)
