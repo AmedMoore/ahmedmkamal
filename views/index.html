@@ -1,68 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahmed Kamal</title>
-    <style>
-        .flex {
-            display: flex;
-        }
-        .flex-col {
-            flex-direction: column;
-        }
-        .items-center {
-            align-items: center;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .my-12 {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-        }
-        .text-xl {
-            font-size: 1.5rem;
-        }
-        .text-2xl {
-            font-size: 2.25rem;
-        }
-        .text-3xl {
-            font-size: 3rem;
-        }
-    </style>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="{{.Meta.Keywords}}" name="keywords"/>
+    <title>{{.Meta.Title}}</title>
+    <link href="/assets/styles/main.css?v={{.Meta.Version}}" rel="stylesheet"/>
 </head>
 <body>
-    <div class="flex flex-col">
-        <section class="text-center my-12">
-            <h1 class="text-3xl">Hey! I'm Ahmed Kamal,</h1>
-            <h2 class="text-xl">Egypt based Software Developer building cool stuff for Mobile and Web.</h2>
+    <header class="header">
+        <div class="nav-container">
+            <a href="/">
+                <img alt="Ahmed Kamal"
+                     class="brand-img"
+                     src="/assets/images/ahmedmkamal.jpg?v={{.Meta.Version}}"/>
+            </a>
             <div>
-                <span>Find me on </span>
-                <a href="//github.com/ahmedmkamal" target="_blank">Github</a>
-                <span>, </span>
-                <a href="//twitter.com/akaahmedkamal" target="_blank">Twitter</a>
-                <span>, and </span>
-                <a href="//upwork.com/freelancers/~01f21e9baaabb64d1d" target="_blank">Upwork</a>
-                <span>.</span>
+                <a class="brand-name" href="/">Ahmed Kamal</a>
+                <nav class="nav">
+                    <a href="/blog" class="nav-link">BLOG</a>
+                    <a href="/projects" class="nav-link">PROJECTS</a>
+                    <a href="/contact" class="nav-link">CONTACT</a>
+                </nav>
             </div>
-        </section>
-        <section class="my-12">
-            <h1 class="text-2xl text-center">Latest from my blog</h1>
-            <div id="latest_posts" class="flex flex-col items-center">
-                <template id="post_card">
-                    
-                </template>
-            </div>
-        </section>
-    </div>
+        </div>
+        <button class="dark-mode-toggle" onclick="app.switchDarkMode()">
+            <svg class="light"
+                 fill="none"
+                 height="20"
+                 stroke="currentColor"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 stroke-width="2"
+                 viewBox="0 0 24 24"
+                 width="20">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg class="dark"
+                 fill="none"
+                 height="20"
+                 stroke="currentColor"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 stroke-width="2"
+                 viewBox="0 0 24 24"
+                 width="20"
+                 xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+        </button>
+    </header>
 
-    <script type="{{ .JsScript }}">
-        const posts = [
-            {{range .Posts}}
-            {{end}}
-        ];
-    </script>
+    <main class="main">
+        <section>
+            <h1>
+                <span class="text-grayed">Hey!</span>
+                <span>I'm Ahmed Kamal</span>
+                <small>
+                    (<a class="link"
+                       href="//google.com/search?q=%40ahmedmkamal+OR+%40akaahmedkamal+OR+site%3Atwitter.com+OR+site%3Aahmedmkamal.com+OR+site%3Agithub.com+OR+site%3Adev.to+OR+site%3Astackoverflow.com"
+                       target="_blank">@ahmedmkamal</a>)
+                </small>
+            </h1>
+            <p class="text-secondary">I'm a Full-Stack developer from Cairo, Egypt 🇪🇬.</p>
+            <p class="text-secondary">
+                <span>I'm a TOP-RATED (top 3%) web and mobile developer on</span>
+                <a class="link"
+                   href="//upwork.com/freelancers/~01f21e9baaabb64d1d"
+                   target="_blank">Upwork</a>.
+            </p>
+            <div>
+                <span>Find me on</span>
+                {{range .Data.SocialMedia}}
+                <div class="humanized-list">
+                    <a class="link"
+                       href="{{.Url}}"
+                       target="_blank">{{.Name}}</a>
+                </div>
+                {{end}}
+            </div>
+        </section>
+        <section>
+            <h2>Latest articles</h2>
+            <div>
+                {{range .Data.Posts}}
+                <article class="article-card" id="{{.ID}}">
+                    <div class="time-container">
+                        <time class="time">{{.PublishDate.Format "Jan 02, 2006"}}</time>
+                    </div>
+                    <div>
+                        <h4 class="title">{{.Title}}</h4>
+                        <p class="text-secondary">{{.ContentPreview}}</p>
+                        <a class="link read-more-link" href="/blog/{{.Slug}}">
+                            <span>Read this article</span>
+                            <svg fill="none"
+                                 height="16"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 viewBox="0 0 24 24"
+                                 width="16">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                {{end}}
+            </div>
+        </section>
+    </main>
+
+    <script src="/assets/scripts/main.js?v={{.Meta.Version}}"
+            type="application/javascript"></script>
 </body>
 </html>

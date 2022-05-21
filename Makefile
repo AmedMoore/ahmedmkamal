@@ -9,3 +9,8 @@ build: clean
 
 clean:
 	rm -f $(BIN)
+
+.PHONY: build/run
+
+build/run: build
+	$(BIN)

@@ -1,0 +1,204 @@
+:root {
+    --background-color: #f4f5f6;
+    --foreground-color: #151517;
+    --foreground-secondary-color: #39393d;
+    --link-color: #247ed7;
+    --link-hovered-color: #0b5dad;
+    --link-active-color: #054f96;
+    --text-grayed-color: #88888d;
+    --clear-button-hovered-background: #e3e6ea;
+    --selection-foreground: #e1e112;
+}
+
+html.dark {
+    --background-color: #151517;
+    --foreground-color: #eaf2fa;
+    --foreground-secondary-color: #ced5dc;
+    --link-color: #4098ef;
+    --link-hovered-color: #2d82d5;
+    --link-active-color: #4098ef;
+    --text-grayed-color: #74797e;
+    --clear-button-hovered-background: #727279;
+    --selection-foreground: #9b9b0f;
+}
+
+::selection {
+    color: inherit;
+    background: var(--selection-foreground);
+}
+
+html,
+body {
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+}
+
+body {
+    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section {
+    display: block;
+    margin-bottom: 3rem;
+}
+
+h2,
+h3 {
+    font-weight: 600;
+}
+
+small {
+    font-weight: lighter;
+    font-size: smaller;
+}
+
+.header,
+.header .nav-container,
+.header .nav-container .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.header .nav-container .brand-name {
+    display: block;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--foreground-color);
+    margin-bottom: 0.3rem;
+}
+
+.header .nav-container .brand-img {
+    display: block;
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.header .nav-container .nav .nav-link {
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: var(--text-grayed-color);
+}
+
+.header .nav-container .nav .nav-link:hover {
+    color: var(--foreground-color);
+}
+
+.header .nav-container .nav .nav-link.active {
+    color: var(--foreground-color);
+    text-decoration: underline;
+}
+
+.header .dark-mode-toggle {
+    background: none;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid var(--clear-button-hovered-background);
+    color: var(--foreground-color);
+}
+
+.header .dark-mode-toggle:hover {
+    background-color: var(--clear-button-hovered-background);
+}
+
+html:not(.dark) .header .dark-mode-toggle svg.dark {
+    display: none;
+}
+
+html.dark .header .dark-mode-toggle svg.light {
+    display: none;
+}
+
+.header,
+.main,
+.footer {
+    width: 100%;
+    max-width: 720px;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.link {
+    color: var(--link-color);
+    font-weight: 500;
+}
+
+.link:hover {
+    color: var(--link-hovered-color);
+}
+
+.link:active {
+    color: var(--link-active-color);
+}
+
+.link[target="_blank"]::after {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" height="10" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="10"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>');
+}
+
+.humanized-list {
+    display: inline-flex;
+}
+
+.humanized-list:not(:last-child)::after {
+    content: ",";
+}
+
+.humanized-list:last-child::before {
+    content: "or ";
+    white-space: pre;
+}
+
+.humanized-list:last-child::after {
+    content: ".";
+}
+
+.text-secondary {
+    color: var(--foreground-secondary-color);
+}
+
+.text-grayed {
+    color: var(--text-grayed-color);
+}
+
+.article-card {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .article-card {
+        flex-direction: column;
+    }
+    .article-card .time-container .time::before {
+        content: "— ";
+        white-space: pre;
+    }
+}
+
+.article-card .time-container {
+    min-width: max-content;
+}
+
+.article-card .time-container .time {
+    font-size: smaller;
+    color: var(--text-grayed-color);
+}
+
+.article-card .title {
+    margin-top: 0;
+}
+
+.article-card .read-more-link {
+    display: flex;
+    align-items: center;
+    font-size: smaller;
+}
