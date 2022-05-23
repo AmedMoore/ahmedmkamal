@@ -3,7 +3,7 @@
     "port": 5001
   },
   "db": {
-    "driver": "sqlite",
-    "url": "db.sqlite"
+    "driver": "sqlite3",
+    "url": "bin/db.sqlite"
   }
 }
