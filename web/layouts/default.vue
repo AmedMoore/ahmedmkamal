@@ -1,32 +1,40 @@
 <template>
   <div class="layout">
-    <Navbar />
-    <main class="layout__content">
-      <slot />
-    </main>
-    <Footer />
+    <div class="layout-content">
+      <Navbar />
+      <main class="page-content">
+        <slot />
+      </main>
+      <Footer />
+    </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { useHead } from "#head";
+
 useHead({
-  title: "Ahmed Kamal",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
   charset: "UTF-8",
+  title: "Ahmed Kamal",
+  viewport:
+    "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0",
   meta: [
-    {
-      name: "description",
-      content: "Ahmed Kamal (@ahmedmkamal) portfolio and blog.",
-    },
+    { name: "description", content: "Ahmed Kamal (@ahmedmkamal)." },
+    { name: "keywords", content: "Ahmed Kamal, @ahmedmkamal, @akaahmedkamal" },
   ],
 });
 </script>
 
 <style scoped lang="scss">
 .layout {
-  @apply flex flex-col min-h-screen items-center;
+  @apply flex min-h-screen justify-center;
 }
-.layout__content {
-  @apply flex-1 px-12 py-6 container;
+
+.layout-content {
+  @apply flex flex-col flex-1 max-w-[720px];
+}
+
+.page-content {
+  @apply flex-1;
 }
 </style>

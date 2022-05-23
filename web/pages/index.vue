@@ -1,42 +1,74 @@
 <template>
-  <div class="flex flex-col">
-    <section id="intro" class="text-center my-12">
-      <h1 class="text-3xl">Hey! I'm Ahmed Kamal,</h1>
-      <h2 class="text-xl">
-        Egypt based Software Developer building cool stuff for Mobile and Web.
-      </h2>
-      <p>
+  <div>
+    <section class="mb-12">
+      <h1 class="text-3xl font-medium">
+        <span class="text-zinc-400 dark:text-zinc-500">Hey! </span>
+        I'm Ahmed Kamal
+        <small>
+          (<a class="link" :href="gSearchUrl" target="_blank">@ahmedmkamal</a>).
+        </small>
+      </h1>
+      <p class="text-zinc-600 dark:text-zinc-300 text-base font-medium my-4">
+        I'm a Full-Stack developer from Cairo, Egypt 🇪🇬.
+      </p>
+      <p class="text-zinc-600 dark:text-zinc-300 text-base font-medium my-4">
+        <span>I'm TOP-RATED (top 3%) web and mobile developer on </span>
+        <a class="link" :href="socialLinks.upwork" target="_blank">Upwork</a>
+        <span>.</span>
+      </p>
+      <p class="text-zinc-600 dark:text-zinc-300 text-base font-medium my-4">
+        I write about Software Development, Freelancing, and Personal Projects
+        in <NuxtLink class="link" to="/blog">my blog</NuxtLink>, stay tuned if
+        you're interested in these topics.
+      </p>
+      <p class="text-zinc-600 dark:text-zinc-300 text-base font-medium my-4">
         <span>Find me on </span>
-        <Link external :href="socialLinks.github">Github</Link>
+        <a class="link" :href="socialLinks.github" target="_blank">Github</a>
         <span>, </span>
-        <Link external :href="socialLinks.twitter">Twitter</Link>
-        <span>, and </span>
-        <Link external :href="socialLinks.upwork">Upwork</Link>
+        <a class="link" :href="socialLinks.twitter" target="_blank">Twitter</a>
+        <span>, or </span>
+        <a class="link" :href="socialLinks.upwork" target="_blank">Upwork</a>
         <span>.</span>
       </p>
     </section>
-    <section id="blog" class="my-12">
-      <h1 class="text-2xl text-center mb-8">Latest from my blog</h1>
-      <div class="flex flex-col items-center">
-        <PostCard v-for="post in posts" :key="post.id" :post="post" />
+    <section>
+      <h2 class="text-2xl font-semibold mb-5">Latest articles</h2>
+      <div>
+        <template v-for="post in posts" :key="post.id">
+          <PostCard :post="post" />
+        </template>
       </div>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useGSearch } from "#imports";
 import { useFetch } from "#app";
-import { computed } from "#imports";
+import type { Post } from "~/models/post";
 import PostCard from "~/components/post-card.vue";
-import type { Post } from "@ahmedmkamal/models";
+
+const gSearchUrl = useGSearch({
+  terms: ["@ahmedmkamal", "@akaahmedkamal"],
+  sites: [
+    "ahmedmkamal.com",
+    "github.com",
+    "linkedin.com",
+    "medium.com",
+    "stackoverflow.com",
+    "twitter.com",
+    "dev.to",
+    "instagram.com",
+  ],
+});
 
 const socialLinks = {
-  github: "https://github.com/ahmedmkamal",
-  twitter: "https://twitter.com/akaahmedkamal",
-  upwork: "https://www.upwork.com/freelancers/~01f21e9baaabb64d1d",
+  upwork: "//upwork.com/freelancers/~01f21e9baaabb64d1d",
+  github: "//github.com/ahmedmkamal",
+  twitter: "//twitter.com/akaahmedkamal",
 };
 
-const { data } = await useFetch<Post[]>("/api/blog/posts");
-
-const posts = computed<Post[]>(() => data.value);
+const { data: posts } = useFetch<Post[]>("/api/blog");
 </script>
+
+<style scoped lang="scss"></style>

@@ -1,6 +1,0 @@
-{
-  "verbose": true,
-  "exec": "node bin/www",
-  "watch": ["*.js", "routes/*.js"],
-  "ext": "js"
-}

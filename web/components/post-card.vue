@@ -1,35 +1,43 @@
 <template>
-  <article class="article">
-    <div class="article__time">
-      <time>{{ post.publishDate }}</time>
-      <VueFeather type="minus" size="20" />
+  <article class="article-card" :id="post.id">
+    <div class="time-container">
+      <time class="time">{{ post.publishDate }}</time>
     </div>
     <div>
-      <h1 class="article__title">{{ post.title }}</h1>
-      <p class="article__preview">{{ post.preview }}</p>
-      <Link :href="`/blog/${post.slug}`">Read more</Link>
+      <h4 class="title">{{ post.title }}</h4>
+      <p class="content-preview">{{ post.contentPreview }}</p>
+      <a class="link flex items-center" :href="`/blog/${post.slug}`">
+        <span>Read this article</span>
+        <Icon icon="chevron-right" size="20" />
+      </a>
     </div>
   </article>
 </template>
 
 <script setup lang="ts">
-import type { Post } from "@ahmedmkamal/models";
-import VueFeather from "vue-feather";
+import type { Post } from "~/models/post";
 
 defineProps<{ post: Post }>();
 </script>
 
 <style scoped lang="scss">
-.article {
-  @apply flex gap-2 w-2/3 mb-12;
+.article-card {
+  @apply flex mb-10 gap-2;
 }
-.article__time {
-  @apply flex min-w-max gap-2 text-sm text-gray-400;
+
+.time-container {
+  @apply min-w-max;
 }
-.article__title {
-  @apply text-lg;
+
+.time {
+  @apply text-sm text-zinc-400 dark:text-zinc-500;
 }
-.article__preview {
-  @apply text-base text-gray-500;
+
+.title {
+  @apply text-lg font-semibold;
+}
+
+.content-preview {
+  @apply text-base font-medium text-zinc-600 dark:text-zinc-400;
 }
 </style>

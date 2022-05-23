@@ -1,0 +1,9 @@
+{
+  "http": {
+    "port": 5001
+  },
+  "db": {
+    "driver": "sqlite",
+    "url": "db.sqlite"
+  }
+}
