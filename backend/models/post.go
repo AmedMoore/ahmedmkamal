@@ -12,5 +12,5 @@ type Post struct {
 	PublishDate    time.Time
 	Author         User
 	AuthorID       string
-	Tags           []Tag
+	Tags           []Tag `gorm:"many2many:post_tags;"`
 }

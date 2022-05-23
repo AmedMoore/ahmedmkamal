@@ -2,7 +2,10 @@ module github.com/ahmedmkamal/ahmedmkamal
 
 go 1.18
 
-require github.com/skyareas/skyjet v0.21.0
+require (
+	github.com/matoous/go-nanoid/v2 v2.0.0
+	github.com/skyareas/skyjet v0.21.0
+)
 
 require (
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
