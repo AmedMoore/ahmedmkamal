@@ -3,15 +3,15 @@ package routes
 import "time"
 
 type Post struct {
-	ID             string
-	Slug           string
-	Title          string
-	Content        string
-	ContentPreview string
-	CoverUrl       string
-	PublishDate    time.Time
-	Author         PostAuthor
-	Tags           []PostTag
+	ID             string     `json:"id"`
+	Slug           string     `json:"slug"`
+	Title          string     `json:"title"`
+	Content        string     `json:"content"`
+	ContentPreview string     `json:"contentPreview"`
+	CoverUrl       string     `json:"coverUrl"`
+	PublishDate    time.Time  `json:"publishDate"`
+	Author         PostAuthor `json:"author"`
+	Tags           []PostTag  `json:"tags"`
 }
 
 type PostAuthor struct {

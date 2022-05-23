@@ -10,12 +10,12 @@ all: clean build
 .PHONY: build
 
 build:
-	go build -o $(EXE) $(SRC_DIR)
+	go build -tags gorm -o $(EXE) $(SRC_DIR)
 
 .PHONY: build/debug
 
 build/debug:
-	go build -tags debug -o $(EXE) $(SRC_DIR)
+	go build -tags debug,gorm -o $(EXE) $(SRC_DIR)
 
 .PHONY: clean
 
