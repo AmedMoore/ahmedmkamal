@@ -1,23 +1,23 @@
 <template>
-  <article class="article-card" :id="post.id">
+  <article class="article-card" :id="article.id">
     <div class="time-container">
-      <time class="time">{{ post.publishDate }}</time>
+      <time class="time">{{ article.publishDate }}</time>
     </div>
     <div>
-      <h4 class="title">{{ post.title }}</h4>
-      <p class="content-preview">{{ post.contentPreview }}</p>
-      <a class="link flex items-center" :href="`/blog/${post.slug}`">
+      <h4 class="title">{{ article.title }}</h4>
+      <p class="content-preview">{{ article.contentPreview }}</p>
+      <NuxtLink class="link flex items-center" :to="`/blog/${article.slug}`">
         <span>Read this article</span>
         <Icon icon="chevron-right" size="20" />
-      </a>
+      </NuxtLink>
     </div>
   </article>
 </template>
 
 <script setup lang="ts">
-import type { Post } from "~/models/post";
+import type { IArticle } from "~/types/article";
 
-defineProps<{ post: Post }>();
+defineProps<{ article: IArticle }>();
 </script>
 
 <style scoped lang="scss">

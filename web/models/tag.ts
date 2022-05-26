@@ -1,7 +1,8 @@
 import { nanoid } from "nanoid";
 import { faker } from "@faker-js/faker";
+import type { ITag } from "~/types/tag";
 
-export class Tag {
+export class Tag implements ITag {
   private constructor(
     public readonly id: string,
     public readonly name: string,

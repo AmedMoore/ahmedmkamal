@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body:not(.dark) {
-  @apply bg-zinc-100 text-zinc-900;
+  @apply bg-zinc-50 text-zinc-900;
 }
 
 body.dark {
@@ -11,7 +11,7 @@ body.dark {
 }
 
 ::selection {
-  @apply bg-amber-200 dark:bg-orange-800 text-inherit;
+  @apply bg-yellow-200 dark:bg-yellow-600 text-inherit;
 }
 
 .link {

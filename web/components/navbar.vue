@@ -30,8 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { useState } from "#app";
-import { onMounted } from "#imports";
+import { onMounted, useState } from "#imports";
 
 const theme = useState("theme", () => "light");
 

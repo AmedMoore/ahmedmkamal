@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-type Post struct {
+type Article struct {
 	ID             string `gorm:"primaryKey"`
 	Slug           string `gorm:"uniqueIndex"`
 	Title          string
@@ -10,7 +10,7 @@ type Post struct {
 	ContentPreview string
 	CoverUrl       string
 	PublishDate    time.Time
-	Author         User
-	AuthorID       string
-	Tags           []Tag `gorm:"many2many:post_tags;"`
+	Publisher      User
+	PublisherID    string
+	Tags           []*Tag `gorm:"many2many:article_tags;"`
 }

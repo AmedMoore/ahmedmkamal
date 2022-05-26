@@ -31,7 +31,7 @@ useHead({
 }
 
 .layout-content {
-  @apply flex flex-col flex-1 max-w-[720px];
+  @apply flex flex-col w-11/12;
 }
 
 .page-content {

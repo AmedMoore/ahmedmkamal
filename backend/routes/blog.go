@@ -1,46 +1,39 @@
 package routes
 
 import (
+	"net/http"
+
+	"github.com/ahmedmkamal/ahmedmkamal/mappers"
 	"github.com/ahmedmkamal/ahmedmkamal/models"
-	"github.com/ahmedmkamal/ahmedmkamal/types"
+	"github.com/samber/lo"
 	"github.com/skyareas/skyjet"
 )
 
 func BlogRouter() *skyjet.Router {
 	r := skyjet.NewRouter()
 	r.Get("/", getPosts)
+	r.Get("/:slug", getPost)
 	return r
 }
 
 func getPosts(_ *skyjet.HttpRequest, res *skyjet.HttpResponse) error {
-	postModels := make([]models.Post, 0)
-	err := skyjet.DB().Preload("Author").Preload("Tags").Find(&postModels).Error
+	var posts []*models.Article
+	err := skyjet.DB().Preload("Publisher").Preload("Tags").Find(&posts).Error
 	if err != nil {
-		return res.Json(skyjet.D{"error": err.Error(), "data": nil})
+		return res.Json(skyjet.D{"error": err.Error(), "data": nil}, http.StatusInternalServerError)
 	}
-	posts := make([]types.Post, len(postModels))
-	for idx, post := range postModels {
-		posts[idx] = types.Post{
-			ID:             post.ID,
-			Slug:           post.Slug,
-			Title:          post.Title,
-			ContentPreview: post.ContentPreview,
-			Content:        post.Content,
-			CoverUrl:       post.CoverUrl,
-			Author: types.PostAuthor{
-				ID:          post.Author.ID,
-				DisplayName: post.Author.DisplayName,
-				Username:    post.Author.Username,
-				AvatarUrl:   post.Author.AvatarUrl,
-			},
-			Tags: make([]types.Tag, len(post.Tags)),
-		}
-		for tagIdx, tag := range post.Tags {
-			posts[idx].Tags[tagIdx] = types.Tag{
-				ID:   tag.ID,
-				Name: tag.Name,
-			}
-		}
+
+	return res.Json(skyjet.D{"data": lo.Map(posts, mappers.ArticleModelToJsonArticle), "error": nil})
+}
+
+func getPost(req *skyjet.HttpRequest, res *skyjet.HttpResponse) error {
+	slug := req.Param("slug")
+
+	var post models.Article
+	err := skyjet.DB().Preload("Publisher").Preload("Tags").Where("slug = ?", slug).First(&post).Error
+	if err != nil {
+		return res.Json(skyjet.D{"error": err.Error(), "data": nil}, http.StatusInternalServerError)
 	}
-	return res.Json(skyjet.D{"data": posts, "error": nil})
+
+	return res.Json(skyjet.D{"data": mappers.ArticleModelToJsonArticle(&post, 0), "error": nil})
 }
