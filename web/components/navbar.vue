@@ -14,10 +14,10 @@
           <NuxtLink active-class="active-link" class="nav-link" to="/blog">
             BLOG
           </NuxtLink>
-          <NuxtLink active-class="active-link" class="nav-link" to="/projects">
+          <NuxtLink active-class="active-link" class="nav-link hidden" to="/projects">
             PROJECTS
           </NuxtLink>
-          <NuxtLink active-class="active-link" class="nav-link" to="/contact">
+          <NuxtLink active-class="active-link" class="nav-link hidden" to="/contact">
             CONTACT
           </NuxtLink>
         </nav>
