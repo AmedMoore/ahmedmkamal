@@ -18,11 +18,17 @@ jobs:
         with:
           node-version: 17.6
 
+      - run: cd web
+      - run: npm ci
+      - run: npm run build
+
       - name: Build Web Image
-        run: cd web && npm run build && docker build -t ghcr.io/ahmedmkamal/ahmedmkamal-web --progress=plain .
+        run: docker build -t ghcr.io/ahmedmkamal/ahmedmkamal-web --progress=plain .
+
+      - run: cd ../backend
 
       - name: Build Backend Image
-        run: cd ../backend && docker build -t ghcr.io/ahmedmkamal/ahmedmkamal-backend --progress=plain .
+        run: docker build -t ghcr.io/ahmedmkamal/ahmedmkamal-backend --progress=plain .
 
       - name: Docker Login
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io --username ahmedmkamal --password-stdin
