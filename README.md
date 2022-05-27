@@ -4,7 +4,7 @@
 
 ### I'm TOP-RATED (top 3%) web and mobile developer on [Upwork][UPWORK_LINK].
 
-### I write about Software Development, Freelancing, and Personal Projects in my blog, stay tuned if you're interested in these topics.
+### I write about Software Development, Freelancing, and Personal Projects in [my blog][BLOG_LINK], stay tuned if you're interested in these topics.
 
 ### Find me on [Github][GITHUB_LINK], [Twitter][TWITTER_LINK], or [Upwork][UPWORK_LINK].
 
