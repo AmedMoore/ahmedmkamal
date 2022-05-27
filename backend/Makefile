@@ -26,3 +26,9 @@ clean:
 
 build/run: build
 	$(EXE)
+
+build/docker:
+	docker build -t ahmedmkamal-backend --progress=plain .
+
+run/docker:
+	docker run -d --name aka-be -p 5001:5001 ahmedmkamal-backend

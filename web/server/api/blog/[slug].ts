@@ -1,10 +1,12 @@
+import { useRuntimeConfig } from "#imports";
 import { defineHandler } from "h3";
-import http from "~/services/http";
 import { Article } from "~/models/article";
 
 export default defineHandler(async ({ context: { params } }) => {
   try {
-    const { data } = await http.get(`/blog/${params.slug}`);
+    const { beApiUrl } = useRuntimeConfig();
+    const res = await fetch(`${beApiUrl}/blog/${params.slug}`);
+    const { data } = await res.json();
     return Article.from(data);
   } catch (e) {
     console.log("e", e);

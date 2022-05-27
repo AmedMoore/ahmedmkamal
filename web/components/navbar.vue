@@ -5,7 +5,7 @@
         <img
           alt="Ahmed Kamal"
           class="brand-img"
-          src="/assets/images/ahmedmkamal.jpg"
+          src="/images/ahmedmkamal.jpg"
         />
       </NuxtLink>
       <div>
@@ -14,10 +14,18 @@
           <NuxtLink active-class="active-link" class="nav-link" to="/blog">
             BLOG
           </NuxtLink>
-          <NuxtLink active-class="active-link" class="nav-link hidden" to="/projects">
+          <NuxtLink
+            active-class="active-link"
+            class="nav-link hidden"
+            to="/projects"
+          >
             PROJECTS
           </NuxtLink>
-          <NuxtLink active-class="active-link" class="nav-link hidden" to="/contact">
+          <NuxtLink
+            active-class="active-link"
+            class="nav-link hidden"
+            to="/contact"
+          >
             CONTACT
           </NuxtLink>
         </nav>

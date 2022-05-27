@@ -1,10 +1,12 @@
+import { useRuntimeConfig } from "#imports";
 import { defineHandler } from "h3";
-import http from "~/services/http";
 import { Article } from "~/models/article";
 
 export default defineHandler(async () => {
   try {
-    const { data } = await http.get("/blog");
+    const { beApiUrl } = useRuntimeConfig();
+    const res = await fetch(`${beApiUrl}/blog`);
+    const { data } = await res.json();
     if (!Array.isArray(data)) {
       return [];
     }
